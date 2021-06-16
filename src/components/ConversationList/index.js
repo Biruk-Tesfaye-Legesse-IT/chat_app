@@ -4,20 +4,21 @@ import ConversationListItem from '../ConversationListItem';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import axios from 'axios';
-
+import Modal from '../SettingsModal';
 import './ConversationList.css';
+
 
 export default function ConversationList(props) {
   const [conversations, setConversations] = useState([]);
 
   const getConversations = useCallback(() => {
-    // axios.get('https://randomuser.me/api/?results=20').then(response => {
-      axios.get('http://127.0.0.1:5000/api/users/111043145295966398014').then(response => {
-        let newConversations = response.map(result => { 
+    axios.get('https://randomuser.me/api/?results=20').then(response => {
+     
+        let newConversations = response.data.results.map(result => { 
           return {
-            photo: result.profile_picture,
-            name: `${result.username} ${result.username}`,
-            text: `${result.user_id}`
+            photo: result.picture.large,
+            name: `${result.name.first} ${result.name.last}`,
+            text: 'Hello world! This is a long message that needs to be truncated.'
           };
         });
         setConversations([...conversations, ...newConversations])
@@ -28,17 +29,20 @@ export default function ConversationList(props) {
     getConversations()
   },[])
 
- 
+  
+  
 
     return (
       <div className="conversation-list">
         <Toolbar
           title="Messenger"
-          leftItems={[
-            <ToolbarButton key="cog" icon="ion-ios-cog" />
-          ]}
+          // leftItems={[
+          //   <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+          // ]}
           rightItems={[
-            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+          
+            <ToolbarButton onClick = {props.onClick} key="cog" icon="ion-ios-cog" /> 
+            
           ]}
         />
         <ConversationSearch />
@@ -57,12 +61,19 @@ export default function ConversationList(props) {
 
 
 
+
+
+
+
+
+
+
 // export default function ConversationList(props) {
 //   const [conversations, setConversations] = useState([]);
 
 //   const getConversations = useCallback(() => {
-//     // axios.get('https://randomuser.me/api/?results=20').then(response => {
-//       axios.get('http://127.0.0.1:5000/api/users/111043145295966398014').then(response => {
+//     axios.get('https://randomuser.me/api/?results=20').then(response => {
+     
 //         let newConversations = response.data.results.map(result => { 
 //           return {
 //             photo: result.picture.large,
@@ -84,11 +95,12 @@ export default function ConversationList(props) {
 //       <div className="conversation-list">
 //         <Toolbar
 //           title="Messenger"
-//           leftItems={[
-//             <ToolbarButton key="cog" icon="ion-ios-cog" />
-//           ]}
+//           // leftItems={[
+//           //   <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+//           // ]}
 //           rightItems={[
-//             <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+          
+//             <ToolbarButton key="cog" icon="ion-ios-cog" />
 //           ]}
 //         />
 //         <ConversationSearch />

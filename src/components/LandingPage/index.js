@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+// import React, {useState,useEffect} from 'react';
 import './Landing.css';
 import {GoogleLogin} from "react-google-login";
 import {GoogleLogout} from 'react-google-login';
@@ -30,26 +30,32 @@ var logout=()=>{
 export default function Landing() {
     let history = useHistory();
 
+    ///////////////////////////////////
+
     var responseGoogle=(response)=>{       
         history.push('/chat')
         console.log(response);
+        console.log("Token ID: ", response.tokenId);
+
+        fetch(`http://127.0.0.1:5000/api/authorize/${response.tokenId}`)
+        .then(response => console.log(response))
     };
     
-
-    const [initialData, setInitialData] = useState([{}])
-    useEffect(()=> {
-        fetch('/api').then(
-            response => response.json()
-         ).then(data => setInitialData(data))
-     //    ).then(data => console.log(data))
-    },[]);
+    ///////////////////////////////////
+    // const [initialData, setInitialData] = useState([{}])
+    // useEffect(()=> {
+    //     fetch('/api').then(
+    //         response => response.json()
+    //      ).then(data => setInitialData(data))
+    //  //    ).then(data => console.log(data))
+    // },[]);
 
 
     return (
       <div> 
         <div className="App">
         
-        <h1>{initialData.title}</h1>
+        {/* <h1>{initialData.title}</h1> */}
 
         <GoogleLogin
         clientId="709342652468-q70g39ndsui4iuclht5eeatfhl9nqngn.apps.googleusercontent.com"

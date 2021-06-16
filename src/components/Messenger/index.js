@@ -1,16 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import ConversationList from '../ConversationList';
 import MessageList from '../MessageList';
 import './Messenger.css';
+import styled from 'styled-components';
 import {Redirect} from "react-router-dom"
+import SettingsModal from '../SettingsModal';
 
-export default function Messenger({authorized, userID}) {
-  console.log("Authorized:", authorized);
-  console.log("UserID:", userID);
-    if (!authorized){
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+
+export default function Messenger({authorized, userID, onClick}) {
+
+  const [showModal, setShowModal] = useState(true);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  };
+  // console.log("Authorized:", authorized);
+  // console.log("UserID:", userID);
+  //   if (!authorized){
       
-      return <Redirect to="/"/>;
-    }
+  //     return <Redirect to="/"/>;
+  //   }
+
+    
 
  
     return (
@@ -34,13 +52,33 @@ export default function Messenger({authorized, userID}) {
           ]}
         /> */}
 
-        <div className="scrollable sidebar">
-          <ConversationList />
+
+        
+    
+
+          <div className="scrollable sidebar">
+            
+            <ConversationList onClick={onClick}/>
+            
+          </div>
+    
+          <div className="scrollable content">
+          {/* <SettingsModal showModal={showModal} setShowModal={setShowModal}/>  */}
+            <MessageList />
+          </div>
+          
+    
+
+        <div>
+        
         </div>
 
-        <div className="scrollable content">
-          <MessageList />
-        </div>
+      
+       
+
+
+
+
       </div>
     );
 }

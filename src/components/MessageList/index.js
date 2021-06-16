@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -12,79 +12,76 @@ const MY_USER_ID = 'apple';
 export default function MessageList(props) {
   const [messages, setMessages] = useState([])
 
-
-  const getMessages = useCallback(() => {
-    var tempMessages = [
-       {
-         id: 1,
-         author: 'apple',
-         message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 2,
-         author: 'orange',
-         message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 3,
-         author: 'orange',
-         message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 4,
-         author: 'apple',
-         message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 5,
-         author: 'apple',
-         message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 6,
-         author: 'apple',
-         message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 7,
-         author: 'orange',
-         message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 8,
-         author: 'orange',
-         message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 9,
-         author: 'apple',
-         message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-         timestamp: new Date().getTime()
-       },
-       {
-         id: 10,
-         author: 'orange',
-         message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-         timestamp: new Date().getTime()
-       },
-     ]
-     setMessages([...messages, ...tempMessages])
- },[messages]) //I changed something here
-
-
   useEffect(() => {
     getMessages();
-  },[getMessages])
+  },[])
 
   
+  const getMessages = () => {
+     var tempMessages = [
+        {
+          id: 1,
+          author: 'apple',
+          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 2,
+          author: 'orange',
+          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 3,
+          author: 'orange',
+          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 4,
+          author: 'apple',
+          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 5,
+          author: 'apple',
+          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 6,
+          author: 'apple',
+          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 7,
+          author: 'orange',
+          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 8,
+          author: 'orange',
+          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 9,
+          author: 'apple',
+          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 10,
+          author: 'orange',
+          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+          timestamp: new Date().getTime()
+        },
+      ]
+      setMessages([...messages, ...tempMessages])
+  }
 
   const renderMessages = () => {
     let i = 0;
